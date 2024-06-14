@@ -28,7 +28,12 @@ RUN groupadd sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN useradd -m -s /bin/bash -g root -G wheel -G sudo app
+
+RUN pacman -S --noconfirm cmake
+RUN pacman -S --noconfirm luajit boost-libs fmt openssl ncurses serd sord liburing libcap
+RUN pacman -S --noconfirm git meson boost cereal re2c gawk gperf asciidoctor
+
 USER app
 WORKDIR /home/app
 
-# RUN yay -S --noconfirm emilua
+RUN yay -S --noconfirm emilua
